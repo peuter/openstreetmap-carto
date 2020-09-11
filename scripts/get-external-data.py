@@ -246,6 +246,7 @@ def main():
                         logging.critical("ogr2ogr returned {} with layer {}".format(e.returncode, name))
                         logging.critical("Command line was {}".format(subprocess.list2cmdline(e.cmd)))
                         logging.critical("Output was\n{}".format(e.output))
+                        logging.critical("Error was\n{}".format(e.stderr))
                         raise RuntimeError("ogr2ogr error when loading table {}".format(name))
 
                     this_table.index()

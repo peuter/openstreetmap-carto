@@ -79,3 +79,19 @@ sources:
         - ne_110m_admin_0_boundary_lines_land.prj
         - ne_110m_admin_0_boundary_lines_land.shp
         - ne_110m_admin_0_boundary_lines_land.shx
+
+  tfis_EPSG25832_Shape:
+    type: shp
+    url: https://www.opengeodata.nrw.de/produkte/geobasis/tfis_nrw/tfis_EPSG25832_Shape.zip
+    file: Shape/rte01_l.shp
+    ogropts: 
+      - '-t_srs'
+      - 'EPSG:3857'
+    archive:
+      format: zip
+      files:
+        - Shape/rte01_l.cpg
+        - Shape/rte01_l.dbf
+        - Shape/rte01_l.prj
+        - Shape/rte01_l.shp
+        - Shape/rte01_l.shx

@@ -1,0 +1,97 @@
+scale: 1
+metatile: 2
+name: OpenStreetMap Carto
+description: A general-purpose OpenStreetMap mapnik style, in CartoCSS
+bounds: &world
+  - -180
+  - -85.05112877980659
+  - 180
+  - 85.05112877980659
+center:
+  - 0
+  - 0
+  - 4
+format: png
+interactivity: false
+minzoom: 0
+maxzoom: 22
+srs: "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+
+# Various parts to be included later on
+_parts:
+  # Extents are used for tilemill, and don't actually make it to the generated XML
+  extents: &extents
+    extent: *world
+    srs-name: "900913"
+    srs: "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+  osm2pgsql: &osm2pgsql
+    type: "postgis"
+    dbname: "gis"
+    host: "localhost"
+    user: "postgres"
+    password: ""
+    key_field: ""
+    geometry_field: "way"
+    extent: "-20037508,-20037508,20037508,20037508"
+
+Stylesheet:
+  - style/style.mss
+  - style/fonts.mss
+  - style/shapefiles.mss
+  - style/landcover.mss
+  - style/water.mss
+  - style/water-features.mss
+  - style/road-colors-generated.mss
+  - style/roads.mss
+  - style/power.mss
+  - style/placenames.mss
+  - style/buildings.mss
+  - style/stations.mss
+  - style/amenity-points.mss
+  - style/ferry-routes.mss
+  - style/aerialways.mss
+  - style/admin.mss
+  - style/addressing.mss
+  - style/hiking-ways.mss
+  - style/tfis-points.mss
+Layer:
+  - id: hiking-ways
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way,
+            'unpaved' AS int_surface
+          FROM "tfis_EPSG25832_Shape"
+        ) AS hiking_ways
+    properties:
+      minzoom: 14
+  - id: tfis-points
+    geometry: point
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+             way,
+             "NAM" AS name,
+             CONCAT("KAT", '-', "SNR") AS feature
+          FROM "tfis_EPSG25832_Shape" WHERE "SNR" = '9050000050030007'
+          ) AS tfis_points
+    properties:
+      minzoom: 14
+  - id: hiking-text-point
+    geometry: point
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+             way,
+             "SNR" AS name
+          FROM "tfis_EPSG25832_Shape"
+          ) AS hiking_text_point
+    properties:
+      minzoom: 14    
