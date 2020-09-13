@@ -15,6 +15,7 @@ def main():
             f.write("""
   [feature = '%s'] {
     marker-file: url('%s');
+    marker-width: 12;
   }""" % (feature, p))
         
         f.write("\n}\n")

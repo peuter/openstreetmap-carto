@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+import os, sys, re
+from sh import carto
+import argparse
+import mapnik
+import math
+import psycopg2
+from dataclasses import dataclass
+from lxml import etree as ET
+import tempfile
+
+@dataclass
+class Config:
+    scale_factor: float = 2.0
+    width: int = 297
+    height: int = 210
+    dpi: int = 300
+    scale: int = 17062
+    bbox = {
+        "minlon": 8.188162,
+        "minlat": 51.408415,
+        "maxlon": 8.351669,
+        "maxlat": 51.458874
+    }
+    center = {
+        "lon": 8.276181,
+        "lat": 51.429478
+    }
+
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+earthCircumference = 40041.44 # km (average, equatorial 40075.017 km / meridional 40007.86 km)
+cmToKmFactor = 100000.0
+inch = 2.54 # cm
+input_srid = 4326
+db_srid = 3857
+
+
+def generate_style(source="project.mml"):
+    print(" * generating mapnik-style")
+    style = carto("-a", "3.0.0", "-n", os.path.join(dir_path, source))
+    with open(os.path.join(dir_path, "mapnik_style.xml"), 'w') as f:
+        f.write(style.stdout.decode("utf-8") )
+
+def prepare(source="project.mml"):
+    # check if mapnik-style.xml is up to date
+    print("preparing...")
+    if not os.path.exists(os.path.join(dir_path, "mapnik_style.xml")):
+        generate_style(source)
+        return
+
+    source_mod_time = os.path.getmtime(os.path.join(dir_path, source))
+    target_mod_time = os.path.getmtime(os.path.join(dir_path, "mapnik_style.xml"))
+    if source_mod_time > target_mod_time:
+        generate_style(source)
+
+def convert_cm_to_degrees_lon(lengthcm, scale, latitude):
+    lengthkm = lengthcm / cmToKmFactor * scale
+    return lengthkm / ((earthCircumference / 360.0) * math.cos(math.radians(latitude)))
+
+
+def convert_cm_to_degrees_lat(lengthcm, scale):
+    lengthkm = lengthcm / cmToKmFactor * scale
+    return lengthkm / (earthCircumference / 360.0)        
+
+def assure_bbox_mode(config):
+    pagesize_lon = convert_cm_to_degrees_lon(config.width / 10, \
+                                                 config.scale, config.center["lat"])
+    pagesize_lat = convert_cm_to_degrees_lat(config.height / 10, config.scale)
+        
+    config.bbox["minlon"] = config.center["lon"] - pagesize_lon / 2
+    config.bbox["minlat"] = config.center["lat"] - pagesize_lat / 2
+    config.bbox["maxlon"] = config.center["lon"] + pagesize_lon / 2
+    config.bbox["maxlat"] = config.center["lat"] + pagesize_lat / 2
+
+def render(config, track=None):
+    print("rendering...")
+    merc = mapnik.Projection('+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over')
+    longlat = mapnik.Projection('+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
+    style_path = os.path.join(dir_path, "mapnik_style.xml")
+    temp_style_path = None
+
+    if track is not None:
+        # get the center of the track
+        conn = psycopg2.connect("dbname=gis user=postgres host=localhost")
+        cur = conn.cursor()
+        snr = track_to_snr(track)
+        point = "ST_Transform(ST_SetSRID(ST_MakePoint(%s, %s),%s), %s)" % (config.center["lon"], config.center["lat"], input_srid, db_srid)
+        select_lon = "ST_X(ST_Transform(ST_Centroid(ST_Union(way)), %s)) AS lon" % input_srid
+        select_lat = "ST_Y(ST_Transform(ST_Centroid(ST_Union(way)), %s)) AS lat" % input_srid
+        sql = "SELECT \"OBJID\", %s, %s, ST_Distance(%s, ST_Centroid(ST_Union(way))) as distance FROM \"tfis_EPSG25832_Shape\" WHERE \"SNR\" = '%s' GROUP BY \"OBJID\" ORDER BY distance LIMIT 1" % (select_lon, select_lat, point, snr)
+        #print(sql)
+        cur.execute(sql)
+        objid, lon, lat, distance = cur.fetchone()
+        print(objid, lon, lat)
+        config.center["lon"] = float(lon)
+        config.center["lat"] = float(lat)
+
+        # create a temporary mapnik_style.xml that filters only this track
+        parser = ET.XMLParser(strip_cdata=False)
+        tree = ET.parse(style_path, parser)
+        root = tree.getroot()
+        table = root.find("./Layer[@name=\"hiking-ways\"]/Datasource/Parameter[@name=\"table\"]")
+        if table is None:
+            print("no 'hiking-ways' layer found")
+            sys.exit(1)
+        table.text = ET.CDATA(re.sub(r"FROM \"tfis_EPSG25832_Shape\".*", "FROM \"tfis_EPSG25832_Shape\" WHERE \"OBJID\" = '%s'" % objid, table.text))
+
+        table = root.find("./Layer[@name='tfis-points']/Datasource/Parameter[@name='table']")
+        if table is None:
+            print("no 'tfis-points' layer found")
+            sys.exit(1)
+        table.text = ET.CDATA(re.sub(r"FROM \"tfis_EPSG25832_Shape\".*", "FROM \"tfis_EPSG25832_Shape\" WHERE \"OBJID\" = '%s'" % objid, table.text))
+
+        temp_style_path = os.path.join(dir_path, "mapnik_style_%s.xml" % track)
+        tree.write(open(temp_style_path, 'wb'), encoding='utf-8', xml_declaration=True)
+        style_path = temp_style_path
+
+    assure_bbox_mode(config)
+
+    map_width = config.width / 10
+    map_height = config.height / 10
+
+    imgwidth = math.trunc(map_width / inch * config.dpi)
+    imgheight = math.trunc(map_height / inch * config.dpi)
+
+    m = mapnik.Map(imgwidth, imgheight)
+    mapnik.load_map(m, style_path)
+    m.srs = merc.params()
+
+    if hasattr(mapnik, 'Box2d'):
+        bbox = mapnik.Box2d(config.bbox["minlon"], config.bbox["minlat"], config.bbox["maxlon"], config.bbox["maxlat"])
+    else:
+        bbox = mapnik.Envelope(config.bbox["minlon"], config.bbox["minlat"], config.bbox["maxlon"], config.bbox["maxlat"])
+
+    transform = mapnik.ProjTransform(longlat, merc)
+    merc_bbox = transform.forward(bbox)
+    m.zoom_to_box(merc_bbox)
+
+    mapnik.render_to_file(m, "map_%s_%sx%s.png" % (track, config.width, config.height),
+                          "png",
+                          config.scale_factor)
+    # if temp_style_path is not None and os.path.exists(temp_style_path)                          :
+    #     os.remove(temp_style_path)
+
+def track_to_snr(track):
+    # 9050000050030000 + track no => 90500000500300005 for A5
+    return 9050000050030000 + int(track[1:])
+
+
+def main():
+    config = Config()
+    parser = argparse.ArgumentParser(description="Render a map")
+
+    parser.add_argument("-d", "--dimensions", default="297x210", help="Target size of the map in mm (e.g. 210x297 for DIN-A4)")
+    parser.add_argument("-s", "--scale", type=int, default=config.scale, help="scale denominator")
+    parser.add_argument("track",nargs="+")
+
+    opts = parser.parse_args()
+
+    [config.width, config.height] = [int(x) for x in opts.dimensions.split("x")]
+    config.scale = opts.scale
+    
+    prepare()
+    render(config, track=opts.track[0])
+
+
+if __name__ == '__main__':
+    main()
