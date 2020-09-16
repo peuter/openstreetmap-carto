@@ -53,6 +53,12 @@ EOF
 
   # Downloading needed shapefiles
   scripts/get-external-data.py
+  # import TFIS data (Tourism)
+  ogr2ogr -skipfailures -lco "GEOMETRY_NAME=way" -lco "EXTRACT_SCHEMA_FROM_LAYER_NAME=YES" -F PostgreSQL PG:"user=postgres dbname=gis host=localhost" "WFS:https://www.wfs.nrw.de/geobasis/wfs_nw_tfis" -t_srs "EPSG:3857"
+  # import DGM (Digitales Geländemodell)
+  # TODO: download and extract data
+  scripts/generate-dem-vrt.py
+  ogr2ogr -F PostgreSQL PG:"user=postgres dbname=gis host=localhost" data/dem.vrt -t_srs EPSG:3857
   ;;
 
 kosmtik)

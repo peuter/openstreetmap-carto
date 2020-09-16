@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os, sys, re
 from sh import carto
+from sh import ogr2ogr
 import argparse
 import mapnik
 import math
@@ -34,6 +35,8 @@ cmToKmFactor = 100000.0
 inch = 2.54 # cm
 input_srid = 4326
 db_srid = 3857
+
+tracks_table = "tfis:rte01_l"
 
 
 def generate_style(source="project.mml"):
@@ -73,6 +76,18 @@ def assure_bbox_mode(config):
     config.bbox["maxlon"] = config.center["lon"] + pagesize_lon / 2
     config.bbox["maxlat"] = config.center["lat"] + pagesize_lat / 2
 
+def get_track_data(track, config):
+    conn = psycopg2.connect("dbname=gis user=postgres host=localhost")
+    cur = conn.cursor()
+    snr = track_to_snr(track)
+    point = "ST_Transform(ST_SetSRID(ST_MakePoint(%s, %s),%s), %s)" % (config.center["lon"], config.center["lat"], input_srid, db_srid)
+    select_lon = "ST_X(ST_Transform(ST_Centroid(ST_Union(way)), %s)) AS lon" % input_srid
+    select_lat = "ST_Y(ST_Transform(ST_Centroid(ST_Union(way)), %s)) AS lat" % input_srid
+    sql = "SELECT \"objid\", %s, %s, ST_Distance(%s, ST_Centroid(ST_Union(way))) as distance FROM \"%s\" WHERE \"snr\" = '%s' GROUP BY \"objid\" ORDER BY distance LIMIT 1" % (select_lon, select_lat, point, tracks_table, snr)
+    #print(sql)
+    cur.execute(sql)
+    return cur.fetchone()
+
 def render(config, track=None):
     print("rendering...")
     merc = mapnik.Projection('+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over')
@@ -82,16 +97,7 @@ def render(config, track=None):
 
     if track is not None:
         # get the center of the track
-        conn = psycopg2.connect("dbname=gis user=postgres host=localhost")
-        cur = conn.cursor()
-        snr = track_to_snr(track)
-        point = "ST_Transform(ST_SetSRID(ST_MakePoint(%s, %s),%s), %s)" % (config.center["lon"], config.center["lat"], input_srid, db_srid)
-        select_lon = "ST_X(ST_Transform(ST_Centroid(ST_Union(way)), %s)) AS lon" % input_srid
-        select_lat = "ST_Y(ST_Transform(ST_Centroid(ST_Union(way)), %s)) AS lat" % input_srid
-        sql = "SELECT \"OBJID\", %s, %s, ST_Distance(%s, ST_Centroid(ST_Union(way))) as distance FROM \"tfis_EPSG25832_Shape\" WHERE \"SNR\" = '%s' GROUP BY \"OBJID\" ORDER BY distance LIMIT 1" % (select_lon, select_lat, point, snr)
-        #print(sql)
-        cur.execute(sql)
-        objid, lon, lat, distance = cur.fetchone()
+        objid, lon, lat, dist = get_track_data(track, config)
         print(objid, lon, lat)
         config.center["lon"] = float(lon)
         config.center["lat"] = float(lat)
@@ -104,13 +110,13 @@ def render(config, track=None):
         if table is None:
             print("no 'hiking-ways' layer found")
             sys.exit(1)
-        table.text = ET.CDATA(re.sub(r"FROM \"tfis_EPSG25832_Shape\".*", "FROM \"tfis_EPSG25832_Shape\" WHERE \"OBJID\" = '%s'" % objid, table.text))
+        table.text = ET.CDATA(re.sub(r"FROM \"%s\".*" % tracks_table, "FROM \"%s\" WHERE \"objid\" = '%s'" % (tracks_table, objid), table.text))
 
         table = root.find("./Layer[@name='tfis-points']/Datasource/Parameter[@name='table']")
         if table is None:
             print("no 'tfis-points' layer found")
             sys.exit(1)
-        table.text = ET.CDATA(re.sub(r"FROM \"tfis_EPSG25832_Shape\".*", "FROM \"tfis_EPSG25832_Shape\" WHERE \"OBJID\" = '%s'" % objid, table.text))
+        table.text = ET.CDATA(re.sub(r"FROM \"%s\".*" % tracks_table, "FROM \"%s\" WHERE \"objid\" = '%s'" % (tracks_table, objid), table.text))
 
         temp_style_path = os.path.join(dir_path, "mapnik_style_%s.xml" % track)
         tree.write(open(temp_style_path, 'wb'), encoding='utf-8', xml_declaration=True)
@@ -148,21 +154,31 @@ def track_to_snr(track):
     return 9050000050030000 + int(track[1:])
 
 
+def export(config, track):
+    objid, lon, lat, dist = get_track_data(track, config)
+    sql = 'SELECT St_Union(ST_Transform(way, {})), \'{}\' as name FROM "{}" WHERE "objid" = \'{}\' GROUP BY "objid"'.format(input_srid, track, tracks_table, objid)
+    ogr2ogr("-f", "GPX", "%s.gpx" % track, "-sql", sql, "PG:dbname=gis host=localhost user=postgres", "-nlt", "LINESTRING", "-lco", "FORCE_GPX_TRACK=YES", "-dsco", "GPX_USE_EXTENSIONS=YES")
+    print("done")
+        
+
 def main():
     config = Config()
     parser = argparse.ArgumentParser(description="Render a map")
 
     parser.add_argument("-d", "--dimensions", default="297x210", help="Target size of the map in mm (e.g. 210x297 for DIN-A4)")
     parser.add_argument("-s", "--scale", type=int, default=config.scale, help="scale denominator")
+    parser.add_argument("-x", "--export", action="store_true", help="Export to GPX")
     parser.add_argument("track",nargs="+")
 
     opts = parser.parse_args()
-
-    [config.width, config.height] = [int(x) for x in opts.dimensions.split("x")]
-    config.scale = opts.scale
-    
-    prepare()
-    render(config, track=opts.track[0])
+    if opts.export:
+        export(config, opts.track[0])
+    else:
+        [config.width, config.height] = [int(x) for x in opts.dimensions.split("x")]
+        config.scale = opts.scale
+        
+        prepare()
+        render(config, track=opts.track[0])
 
 
 if __name__ == '__main__':

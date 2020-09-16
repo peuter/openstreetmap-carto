@@ -1659,7 +1659,7 @@ Layer:
         (SELECT
             way,
             'unpaved' AS int_surface
-          FROM "tfis_EPSG25832_Shape"
+          FROM "tfis:rte01_l"
         ) AS hiking_ways
     properties:
       minzoom: 14
@@ -1671,9 +1671,9 @@ Layer:
       table: |-
         (SELECT
              way,
-             "NAM" AS name,
-             CONCAT("KAT", '-', "SNR") AS feature
-          FROM "tfis_EPSG25832_Shape"
+             "nam" AS name,
+             CONCAT("kat", '-', "snr") AS feature
+          FROM "tfis:rte01_l"
           ) AS tfis_points
     properties:
       minzoom: 14
