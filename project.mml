@@ -54,6 +54,7 @@ Stylesheet:
   - style/addressing.mss
   - style/hiking-ways.mss
   - style/tfis-points.mss
+  - style/hillshading.mss
 Layer:
   - id: landcover-low-zoom
     geometry: polygon
@@ -154,6 +155,12 @@ Layer:
         ) AS landcover_line
     properties:
       minzoom: 14
+  - id: hillshading
+    geometry: raster 
+    <<: *extents
+    Datasource:
+      file: dgm1_Warstein_hillshade.tif
+      type: gdal
   - id: water-lines-casing
     geometry: linestring
     <<: *extents
@@ -1670,11 +1677,46 @@ Layer:
       <<: *osm2pgsql
       table: |-
         (SELECT
-             way,
-             "nam" AS name,
-             CONCAT("kat", '-', "snr") AS feature
-          FROM "tfis:rte01_l"
-          ) AS tfis_points
+            way,
+            "inf" AS name,
+            CONCAT("kat", '-', "snr") AS feature
+         FROM "tfis:rte01_l" WHERE way && !bbox!
+         UNION ALL
+         SELECT
+            way,
+            "nam" AS name,
+            CONCAT("objart", '-', "fkt") AS feature
+         FROM "tfis:swd01_p"
+         WHERE way && !bbox!
+         UNION ALL
+         SELECT
+            way,
+            "nam" AS name,
+            CONCAT("objart", '-', "fkt") AS feature
+         FROM "tfis:swd02_p"
+         WHERE way && !bbox!
+         UNION ALL
+         SELECT
+            way,
+            "nam" AS name,
+            CONCAT("objart", '-', "blr", '-', "blw") AS feature
+         FROM "tfis:swd03_p"
+         WHERE way && !bbox!
+         UNION ALL
+         SELECT
+            way,
+            "nam" AS name,
+            CONCAT("objart", '-', "fkt") AS feature
+         FROM "tfis:inf01_p"
+         WHERE way && !bbox!
+         UNION ALL
+         SELECT
+            way,
+            "nam" AS name,
+            CONCAT("objart", '-', "fkt") AS feature
+         FROM "tfis:inf03_p"
+         WHERE way && !bbox!
+         ) AS tfis_points
     properties:
       minzoom: 14
   - id: roads-text-ref-low-zoom

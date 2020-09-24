@@ -22,7 +22,8 @@ def main():
 
         for p in glob.glob(os.path.join(signature_poi_dir, "**/*.svg")):
             (parent, filename) = p.split("/")[-2:]
-            feature = "%s-%s" % ("_".join(parent.split("_")[:-1]), filename.split(".")[0].split("_")[0])
+            id = "-".join(filename.split(".")[0].split("_")[0:1]) if "TF_91305" in parent else filename.split(".")[0].split("_")[0]
+            feature = "%s-%s" % ("".join(parent.split("_")[:-1]), id)
             f.write("""
   [feature = '%s'] {
     marker-file: url('%s');

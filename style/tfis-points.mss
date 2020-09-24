@@ -6968,295 +6968,295 @@
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_Wanderwege/1040_OertlicherWanderweg/9050000050040118.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91303-3242'] {
+  [feature = 'TF91303-3242'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91303_SonstigesBauwerk/3242_Aussichtsturm.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91303-3255'] {
+  [feature = 'TF91303-3255'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91303_SonstigesBauwerk/3255_DenkmalGenkstein.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91303-3211'] {
+  [feature = 'TF91303-3211'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91303_SonstigesBauwerk/3211_Windmuehle.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91303-3279'] {
+  [feature = 'TF91303-3279'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91303_SonstigesBauwerk/3279_SonstigeTechnischeSehenswuerdigkeit.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91303-3210'] {
+  [feature = 'TF91303-3210'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91303_SonstigesBauwerk/3210_Wassermuehle.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4530'] {
+  [feature = 'TF91412-4530'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4530_Hallenbad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4540'] {
+  [feature = 'TF91412-4540'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4540_Thermalbad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4550'] {
+  [feature = 'TF91412-4550'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4550_Erlebnisbad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4542'] {
+  [feature = 'TF91412-4542'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4542_Mineralbad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4541'] {
+  [feature = 'TF91412-4541'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4541_Heilbad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4531'] {
+  [feature = 'TF91412-4531'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4531_Freibad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91412-4532'] {
+  [feature = 'TF91412-4532'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91412_Baden/4532_HallenFreibad.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91206-2510'] {
+  [feature = 'TF91206-2510'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91206_Information/2510_Touristikinformation.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1006'] {
+  [feature = 'TF91305-1006'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1006_1002_Aussichtspunkt_Suedwest_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-0000'] {
+  [feature = 'TF91305-0000'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/0000_1004_Aussichtspunkt_Rundumsicht_400Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1007'] {
+  [feature = 'TF91305-1007'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1007_1002_Aussichtspunkt_West_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1004'] {
+  [feature = 'TF91305-1004'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1004_1002_Aussichtspunkt_Suedost_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1002'] {
+  [feature = 'TF91305-1002'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1002_1002_Aussichtspunkt_Nordost_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1005'] {
+  [feature = 'TF91305-1005'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1005_1002_Aussichtspunkt_Sued_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1001'] {
+  [feature = 'TF91305-1001'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1001_1002_Aussichtspunkt_Nord_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1003'] {
+  [feature = 'TF91305-1003'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1003_1002_Aussichtspunkt_Ost_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91305-1008'] {
+  [feature = 'TF91305-1008'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91305_Aussichtspunkt/1008_1002_Aussichtspunkt_Nordwest_200Gon.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3050'] {
+  [feature = 'TF91301-3050'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3050_Schloss.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3051'] {
+  [feature = 'TF91301-3051'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3051_Schlossruine.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3020'] {
+  [feature = 'TF91301-3020'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3020_Kloster.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3025'] {
+  [feature = 'TF91301-3025'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3025_Synagoge.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3012'] {
+  [feature = 'TF91301-3012'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3012_Kirche_ehem.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3060'] {
+  [feature = 'TF91301-3060'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3060_Burg.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3040'] {
+  [feature = 'TF91301-3040'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3040_Wegekreuz.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3026'] {
+  [feature = 'TF91301-3026'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3026_Moschee.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3011'] {
+  [feature = 'TF91301-3011'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3011_Kirchenruine.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3061'] {
+  [feature = 'TF91301-3061'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3061_Burgruine.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3021'] {
+  [feature = 'TF91301-3021'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3021_Klosterruine.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3010'] {
+  [feature = 'TF91301-3010'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3010_Kirche.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3017'] {
+  [feature = 'TF91301-3017'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3017_Kapelle_ehem.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3053'] {
+  [feature = 'TF91301-3053'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3053_GutHerrenhaus.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3022'] {
+  [feature = 'TF91301-3022'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3022_Kloster_ehem.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3063'] {
+  [feature = 'TF91301-3063'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3063_Burghuegel.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3016'] {
+  [feature = 'TF91301-3016'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3016_Kapellenruine.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91301-3015'] {
+  [feature = 'TF91301-3015'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91301_KircheSchlossBurg/3015_Kapelle.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91202-2110'] {
+  [feature = 'TF91202-2110'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91202_Individualverkehr/2110_Parkplatz.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91204-2340'] {
+  [feature = 'TF91204-2340'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91204_Unterkunft/2340_Campingplatz.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91208-2702'] {
+  [feature = 'TF91208-2702'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91208_InfrastrukturWassersport/2702_Bootshafen.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91205-2430'] {
+  [feature = 'TF91205-2430'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91205_RastEinkehr/2430_Schutzhuette.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91304-3330'] {
+  [feature = 'TF91304-3330'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91304_Natur/3330_Naturdenkmal_HervorragenderBaum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91201-2010'] {
+  [feature = 'TF91201-2010'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91201_OeffentlicherPersonenverkehr/2010_Bahnhof.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91201-2099'] {
+  [feature = 'TF91201-2099'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91201_OeffentlicherPersonenverkehr/2099_Haltepunkt.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91402-4150'] {
+  [feature = 'TF91402-4150'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91402_TheaterMusik/4150_Opernhaus.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91402-4160'] {
+  [feature = 'TF91402-4160'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91402_TheaterMusik/4160_KonzertsaalHalle.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91411-4405'] {
+  [feature = 'TF91411-4405'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91411_Sport/4405_SportanlageStadion.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91411-4460'] {
+  [feature = 'TF91411-4460'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91411_Sport/4460_Flugsport.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91411-4469'] {
+  [feature = 'TF91411-4469'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91411_Sport/4469_Modellflug.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91411-4499'] {
+  [feature = 'TF91411-4499'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91411_Sport/4499_SonstigesSport_Landeplatz.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91411-4475'] {
+  [feature = 'TF91411-4475'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91411_Sport/4475_Eissporthalle.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91302-3131'] {
+  [feature = 'TF91302-3131'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91302_ArchaeologischesBauwerk/3131_GrabhuegelHuegelgrab.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91302-3132'] {
+  [feature = 'TF91302-3132'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91302_ArchaeologischesBauwerk/3132_Steingrab.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4085'] {
+  [feature = 'TF91401-4085'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4085_Besucherbergwerk.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4099'] {
+  [feature = 'TF91401-4099'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4099_SonstigesMuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4040'] {
+  [feature = 'TF91401-4040'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4040_Kunstmuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4070'] {
+  [feature = 'TF91401-4070'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4070_Gedenkstätte.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4022'] {
+  [feature = 'TF91401-4022'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4022_MuseumGeschichte.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4020'] {
+  [feature = 'TF91401-4020'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4020_Völkerkundemuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4050'] {
+  [feature = 'TF91401-4050'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4050_Freilichtmuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4021'] {
+  [feature = 'TF91401-4021'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4021_MuseumUrFruehgeschichte.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4060'] {
+  [feature = 'TF91401-4060'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4060_MuseumHeimatvertriebenen.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4010'] {
+  [feature = 'TF91401-4010'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4010_Heimatkundemuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4080'] {
+  [feature = 'TF91401-4080'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4080_Planetarium.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4030'] {
+  [feature = 'TF91401-4030'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4030_Naturkundemuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4045'] {
+  [feature = 'TF91401-4045'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4045_Architekturmuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4081'] {
+  [feature = 'TF91401-4081'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4081_Sternwarte.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4035'] {
+  [feature = 'TF91401-4035'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4035_MuseumLandwirtschaftWeinbauForsten.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4012'] {
+  [feature = 'TF91401-4012'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4012_Landeskundemuseum.svg');
     marker-width: 12;
   }
-  [feature = 'TF_91401-4031'] {
+  [feature = 'TF91401-4031'] {
     marker-file: url('../data/maps/tfis_EPSG25832_Shape/Signaturen_SVG/Signaturen_POI/TF_91401_Museum/4031_Technikmuseum.svg');
     marker-width: 12;
   }
